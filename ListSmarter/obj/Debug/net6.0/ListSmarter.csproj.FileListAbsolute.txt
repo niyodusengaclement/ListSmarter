@@ -1,0 +1,12 @@
+C:\Projects\ListSmarter\ListSmarter\bin\Debug\net6.0\ListSmarter.deps.json
+C:\Projects\ListSmarter\ListSmarter\bin\Debug\net6.0\ListSmarter.dll
+C:\Projects\ListSmarter\ListSmarter\bin\Debug\net6.0\ListSmarter.pdb
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ListSmarter.csproj.AssemblyReference.cache
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ListSmarter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ListSmarter.AssemblyInfoInputs.cache
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ListSmarter.AssemblyInfo.cs
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ListSmarter.csproj.CoreCompileInputs.cache
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ListSmarter.dll
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\refint\ListSmarter.dll
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ListSmarter.pdb
+C:\Projects\ListSmarter\ListSmarter\obj\Debug\net6.0\ref\ListSmarter.dll
