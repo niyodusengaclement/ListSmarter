@@ -6,8 +6,8 @@ namespace ListSmarter.Controllers
 {
     public class TaskController
     {
-        private readonly ITaskService<TaskDto> _taskService;
-        public TaskController(ITaskService<TaskDto> taskService) => _taskService = taskService;
+        private readonly ITaskService _taskService;
+        public TaskController(ITaskService taskService) => _taskService = taskService;
 
         public List<TaskDto> Add(TaskDto user)
         {
@@ -23,9 +23,9 @@ namespace ListSmarter.Controllers
             return _taskService.GetById(id);
         }
 
-        public string Update(int id, TaskDto user)
+        public string Update(int id, TaskDto task)
         {
-            return _taskService.Update(id, user);
+            return _taskService.Update(id, task);
         }
 
         public string Delete(int id)
@@ -33,9 +33,21 @@ namespace ListSmarter.Controllers
             return _taskService.Delete(id);
         }
 
-        public void ChangeTaskStatus(int taskId, TaskEnum status)
+        public void ChangeTaskStatus(int taskId, TaskStatusEnum status)
         {
-            return _taskService.ChangeTaskStatus(taskId, status);
+            _taskService.ChangeTaskStatus(taskId, status);
+        }
+        public void AssignTaskToUser(int taskId, int userId)
+        {
+            _taskService.AssignTaskToUser(taskId, userId);
+        }
+        public void AssignTaskToBucket(int taskId, int bucketId)
+        {
+            _taskService.AssignTaskToBucket(taskId, bucketId);
+        }
+        public List<TaskDto> GetTasksByBucketId(int bucketId)
+        {
+            return _taskService.GetTasksByBucketId(bucketId);
         }
     }
 }

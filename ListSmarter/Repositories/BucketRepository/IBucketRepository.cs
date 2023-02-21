@@ -1,7 +1,8 @@
-﻿namespace ListSmarter.Repositories.BucketRepository
+﻿using ListSmarter.DTO;
+
+namespace ListSmarter.Repositories.BucketRepository
 {
-    public interface IBucketRepository<T> : IRepository<T> where T : class
+    public interface IBucketRepository : IRepository<BucketDto>
     {
-        void GetBucketTasks(int bucketId);
     }
 }

@@ -1,8 +1,9 @@
-﻿namespace ListSmarter.Services.BucketService
+﻿using ListSmarter.DTO;
+
+namespace ListSmarter.Services.BucketService
 {
-    public interface IBucketService<T> : IGenericService<T> where T : class
+    public interface IBucketService : IGenericService<BucketDto> 
     {
-        void GetBucketTasks(int bucketId);
 
     }
 }

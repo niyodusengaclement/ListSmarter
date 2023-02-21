@@ -1,36 +1,27 @@
 ﻿using ListSmarter.DTO;
 using ListSmarter.Repositories.BucketRepository;
 using FluentValidation;
+using System.Data;
 
 namespace ListSmarter.Services.BucketService
 {
-    public class BucketService : IGenericService<BucketDto>, IBucketService<BucketDto>
+    public class BucketService : IBucketService
     {
-        private readonly IBucketRepository<BucketDto> _bucketRepository;
+        private readonly IBucketRepository _bucketRepository;
         private readonly IValidator<BucketDto> _bucketValidator;
-        public BucketService(IBucketRepository<BucketDto> bucketRepository, IValidator<BucketDto> bucketValidator)
+        public BucketService(IBucketRepository bucketRepository, IValidator<BucketDto> bucketValidator)
         {
             _bucketRepository = bucketRepository;
-            _bucketValidator = bucketValidator ?? throw new ArgumentException(); ;
-
-            for (int i = 0; i < 3; i ++)
-            {
-                BucketDto bucket = new ()
-                {
-                    Id = i,
-                    Title = $"Baquetti{i+1}",
-                };
-                Add(bucket);
-            }
+            _bucketValidator = bucketValidator ?? throw new ArgumentException("Error has occured");
         }
 
         public IList<BucketDto> Add(BucketDto bucket)
         {
             var validationResult = _bucketValidator.Validate(bucket);
-            BucketDto ExistingBucket = _bucketRepository.GetAll().ToList()?.Find((x) => x.Title == bucket.Title);
+            BucketDto? ExistingBucket = _bucketRepository.GetAll().ToList()?.Find((x) => x.Title == bucket.Title);
             if(ExistingBucket != null)
             {
-                Console.WriteLine($"Failed. Bucket with title: `{bucket.Title}` already exists");
+                throw new DuplicateNameException($"Failed. Bucket with title: `{bucket.Title}` already exists");
             }
             if (validationResult.IsValid)
             {
@@ -56,19 +47,25 @@ namespace ListSmarter.Services.BucketService
             if (validationResult.IsValid)
             {
                 _bucketRepository.Update(id, bucket);
+                return "Bucket has been updated successfully";
+            } else
+            {
+                return "Bad input. Bucket validation failed";
             }
-            return "Bad input. Bucket validation failed";
         }
 
         public string Delete(int id)
         {
-            _bucketRepository.Delete(id);
-            return "Bucket has been deleted successfully";
-        }
+            if (GetById(id)?.Tasks?.Count > 0)
+            {
+                return "Failed. Bucket has assigned tasks";
+            }
+            else
+            {
+                _bucketRepository.Delete(id);
+                return "Bucket has been deleted successfully";
 
-        public void GetBucketTasks(int bucketId)
-        {
-            throw new NotImplementedException();
+            }
         }
     }
 }

@@ -4,25 +4,14 @@ using FluentValidation;
 
 namespace ListSmarter.Services.PersonService
 {
-    public class PersonService : IGenericService<PersonDto>, IPersonService<PersonDto>
+    public class PersonService : IPersonService
     {
-        private readonly IPersonRepository<PersonDto> _personRepository;
+        private readonly IPersonRepository _personRepository;
         private readonly IValidator<PersonDto> _personValidator;
-        public PersonService(IPersonRepository<PersonDto> personRepository, IValidator<PersonDto> personValidator)
+        public PersonService(IPersonRepository personRepository, IValidator<PersonDto> personValidator)
         {
             _personRepository = personRepository;
-            _personValidator = personValidator ?? throw new ArgumentException(); ;
-
-            for (int i = 0; i < 5; i ++)
-            {
-                PersonDto person = new PersonDto()
-                {
-                    Id = i,
-                    FirstName = $"John{i+1}",
-                    LastName = $"Doe{i+1}",
-                };
-                Add(person);
-            }
+            _personValidator = personValidator ?? throw new ArgumentException();
         }
 
         public IList<PersonDto> Add(PersonDto user)
@@ -58,7 +47,7 @@ namespace ListSmarter.Services.PersonService
 
         public string Delete(int id)
         {
-            if(GetById(id)?.Tasks?.Count() > 0)
+            if(GetById(id)?.Tasks?.Count > 0)
             {
                 return "Failed. User has assigned tasks";
             } else
@@ -67,11 +56,6 @@ namespace ListSmarter.Services.PersonService
                 return "User has been deleted successfully";
 
             }
-        }
-
-        public void AssignUserTask(int userId, int taskId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -2,6 +2,7 @@
 using AutoMapper;
 using ListSmarter.DTO;
 using ListSmarter.Models;
+using TaskModel = ListSmarter.Models.Task;
 
 namespace ListSmarter
 {
@@ -14,8 +15,8 @@ namespace ListSmarter
             CreateMap<PersonDto, Person>();
             CreateMap<BucketDto, Bucket>();
             CreateMap<Bucket, BucketDto>();
-            CreateMap<Models.Task, TaskDto>();
-            CreateMap<TaskDto, Models.Task>();
+            CreateMap<TaskModel, TaskDto>();
+            CreateMap<TaskDto, TaskModel>();
         }
     }
 }

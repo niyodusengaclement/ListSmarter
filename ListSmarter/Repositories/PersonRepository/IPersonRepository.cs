@@ -1,7 +1,8 @@
-﻿namespace ListSmarter.Repositories.PersonRepository
+﻿using ListSmarter.DTO;
+
+namespace ListSmarter.Repositories.PersonRepository
 {
-    public interface IPersonRepository<T> : IRepository<T>
+    public interface IPersonRepository : IRepository<PersonDto>
     {
-        void AssignUserTask(int userId, int taskId);
     }
 }

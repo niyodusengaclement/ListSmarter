@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using ListSmarter.Models;
 using ListSmarter.DTO;
+using ListSmarter.Common;
 
 namespace ListSmarter.Repositories.BucketRepository
 {
-    public class BucketRepository : IRepository<BucketDto>, IBucketRepository<BucketDto>
+    public class BucketRepository : IBucketRepository
     {
         private readonly IMapper _mapper;
+        public List<Bucket> _buckets = TemporaryDatabase.Buckets;
         public BucketRepository(IMapper mapper)
         {
             _mapper = mapper;
         }
-
-        List<Bucket> _buckets = new();
 
         public IList<BucketDto> Add(BucketDto bucket)
         {
@@ -39,11 +39,6 @@ namespace ListSmarter.Repositories.BucketRepository
         {
             Bucket existingBucket = _buckets.First(x => x.Id == id);
             _buckets.Remove(existingBucket);
-        }
-
-        public void GetBucketTasks(int bucketId)
-        {
-            //throw new NotImplementedException();
         }
     }
 }

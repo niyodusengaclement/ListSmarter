@@ -8,7 +8,6 @@ namespace ListSmarter.Validators
 
         public TaskValidator()
         {
-            RuleFor(task => task.Bucket).NotEmpty();
             RuleFor(task => task.Description).NotEmpty();
             RuleFor(task => task.Title).NotEmpty();
             RuleFor(task => task.Status).IsInEnum();

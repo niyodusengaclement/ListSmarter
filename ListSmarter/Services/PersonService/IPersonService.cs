@@ -1,8 +1,10 @@
-﻿namespace ListSmarter.Services.PersonService
+﻿using ListSmarter.DTO;
+
+namespace ListSmarter.Services.PersonService
 {
-    public interface IPersonService<T> : IGenericService<T> where T : class
+    public interface IPersonService : IGenericService<PersonDto>
     {
-        void AssignUserTask(int userId, int taskId);
+        
 
     }
 }

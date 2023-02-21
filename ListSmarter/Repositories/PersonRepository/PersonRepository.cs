@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using ListSmarter.Models;
 using ListSmarter.DTO;
+using ListSmarter.Common;
 
 namespace ListSmarter.Repositories.PersonRepository;
 
-public class PersonRepository : IRepository<PersonDto>, IPersonRepository<PersonDto>
+public class PersonRepository : IPersonRepository
 {
     private readonly IMapper _mapper;
+    public List<Person> _persons = TemporaryDatabase.People;
     public PersonRepository(IMapper mapper)
     {
         _mapper = mapper;
     }
-
-    List<Person> _persons = new();
 
     public IList<PersonDto> Add(PersonDto user)
     {
@@ -40,10 +40,5 @@ public class PersonRepository : IRepository<PersonDto>, IPersonRepository<Person
     {
         Person existingUser = _persons.First(x => x.Id == id);
         _persons.Remove(existingUser);
-    }
-
-    public void AssignUserTask(int userId, int taskId)
-    {
-        //throw new NotImplementedException();
     }
 }

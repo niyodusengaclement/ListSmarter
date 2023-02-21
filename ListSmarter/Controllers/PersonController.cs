@@ -5,8 +5,8 @@ namespace ListSmarter.Controllers
 {
     public class PersonController
     {
-        private readonly IPersonService<PersonDto> _personService;
-        public PersonController(IPersonService<PersonDto> personService) =>  _personService = personService;
+        private readonly IPersonService _personService;
+        public PersonController(IPersonService personService) =>  _personService = personService;
 
         public List<PersonDto> Add(PersonDto user)
         {
@@ -30,11 +30,6 @@ namespace ListSmarter.Controllers
         public string Delete(int id)
         {
             return _personService.Delete(id);
-        }
-
-        public void AssignUserTask(int userId, int taskId)
-        {
-            //throw new NotImplementedException();
         }
     }
 }

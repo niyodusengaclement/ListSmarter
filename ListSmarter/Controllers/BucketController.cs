@@ -5,8 +5,8 @@ namespace ListSmarter.Controllers
 {
     public class BucketController
     {
-        private readonly IBucketService<BucketDto> _bucketService;
-        public BucketController(IBucketService<BucketDto> bucketService) =>  _bucketService = bucketService;
+        private readonly IBucketService _bucketService;
+        public BucketController(IBucketService bucketService) =>  _bucketService = bucketService;
 
         public List<BucketDto> Add(BucketDto user)
         {
@@ -30,11 +30,6 @@ namespace ListSmarter.Controllers
         public string Delete(int id)
         {
             return _bucketService.Delete(id);
-        }
-
-        public void GetBucketTasks(int bucketId)
-        {
-            //throw new NotImplementedException();
         }
     }
 }
